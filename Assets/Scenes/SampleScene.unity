@@ -360,8 +360,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 7157792550566277163, guid: 37a822b6254c3b04ba25b49e95abb2fb, type: 3}
   powerup: {fileID: 3299809484230346361, guid: 431185cc82cbfd04988bcf4175aba888, type: 3}
-  spawnTimeEnemy: 3
-  spawnTimePowerup: 6
 --- !u!1 &990067227
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e604b690603af248ad6be55f208d047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSO: {fileID: 11400000, guid: 1814b2c4a7f0a46489a2c6dfb8070989, type: 2}
 --- !u!58 &1119048337
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -489,7 +488,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

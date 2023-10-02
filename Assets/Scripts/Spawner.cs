@@ -8,9 +8,9 @@ public class Spawner : MonoBehaviour
 {
     public GameObject enemy;
     public GameObject powerup;
-    public float spawnTimeEnemy = 3f;
-    public float spawnTimePowerup = 7f;
-    private bool _firstTime = true;
+    private float spawnTimeEnemy = 3f;
+    private float spawnTimePowerup = 10f;
+    public static bool _firstTime = true;
 
     private int seed;
     
@@ -28,6 +28,14 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
+	    if (_firstTime)
+	    {
+		    GameObject.Instantiate(enemy, new Vector2(4f, 4f), transform.rotation * Quaternion.Euler (0f, 0f, 15f));
+		    GameObject.Instantiate(enemy, new Vector2(-4f, 4f), transform.rotation * Quaternion.Euler (0f, 0f, -15f));
+		    _firstTime = false;
+		    return;
+	    }
+	    
 	    seed = Random.Range(0, 2);
 	    switch(seed)
 	    {
@@ -43,15 +51,12 @@ public class Spawner : MonoBehaviour
 
     private void SpawnPowerup()
     {
-	    if (!_firstTime)
-	    {
-		    GameObject.Instantiate(powerup);
-		    Debug.Log("spawn");
-	    }
-	    else
-	    {
-		    _firstTime = false;
-		    Debug.Log("a");
-	    }
+	    float spawnY = Random.Range
+		    (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+	    float spawnX = Random.Range
+		    (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+ 
+	    Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+	    Instantiate(powerup, spawnPosition, Quaternion.identity);
     }
 }

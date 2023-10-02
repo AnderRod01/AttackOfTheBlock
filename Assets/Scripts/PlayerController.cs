@@ -7,10 +7,17 @@ using Vector3 = UnityEngine.Vector3;
 
 public class FollowCursor : MonoBehaviour
 {
+
+    public PlayerScriptableObject playerSO;
+    private AudioSource _audioSource;
+    
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
+        playerSO.health = 3;
+        _audioSource = this.gameObject.GetComponent<AudioSource>();   
+
     }
 
     // Update is called once per frame
@@ -27,11 +34,19 @@ public class FollowCursor : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //-1 vida al colisionar con enemigo
         if (collision.gameObject.tag == "Enemy")
         {
-            Application.Quit();
+            if (playerSO.health <= 0)
+            {
+                Application.Quit();
+            }
+            
+            playerSO.health--;
+            Debug.Log(playerSO.health);
         }
-
+        
+        //Destruir todos los enemigos al coger powerup
         if (collision.gameObject.tag == "Powerup")
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -40,6 +55,8 @@ public class FollowCursor : MonoBehaviour
                 Destroy(enemy);
             }
             Destroy(GameObject.FindWithTag("Powerup"));
+            Spawner._firstTime = true;
+            this._audioSource.Play();
         }
     }
 }
