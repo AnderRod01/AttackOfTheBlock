@@ -37,13 +37,14 @@ public class FollowCursor : MonoBehaviour
         //-1 vida al colisionar con enemigo
         if (collision.gameObject.tag == "Enemy")
         {
-            if (playerSO.health <= 0)
+            playerSO.health--;
+            Debug.Log(playerSO.health);
+            if (playerSO.health == 0)
             {
                 Application.Quit();
             }
             
-            playerSO.health--;
-            Debug.Log(playerSO.health);
+            
         }
         
         //Destruir todos los enemigos al coger powerup
