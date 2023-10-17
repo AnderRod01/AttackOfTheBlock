@@ -1,0 +1,8 @@
+Attack of the Block v1.2
+
+- Añadida HUD con salud y puntuación del jugador
+- Añadido sistema de puntuación por tiempo y ranking
+- Añadido nuevo powerup: Nota verde que cura 1 punto de salud
+- Añadido menú principal
+- Añadido menú de pausa
+- Añadido tiempo de invulnerabilidad al recibir daño de los enemigos

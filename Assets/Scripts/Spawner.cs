@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject enemy;
     public GameObject powerup;
+    public GameObject healthUp;
     private float spawnTimeEnemy = 3f;
     private float spawnTimePowerup = 10f;
     public static bool _firstTime = true;
@@ -51,12 +52,24 @@ public class Spawner : MonoBehaviour
 
     private void SpawnPowerup()
     {
+	    
+	    
+	    
 	    float spawnY = Random.Range
 		    (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
 	    float spawnX = Random.Range
 		    (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
- 
+	   
+	    seed = Random.Range(0, 2);
 	    Vector2 spawnPosition = new Vector2(spawnX, spawnY);
-	    Instantiate(powerup, spawnPosition, Quaternion.identity);
+	    switch(seed)
+	    {
+		    case 0:
+			    Instantiate(powerup, spawnPosition, Quaternion.identity);
+			    break;
+		    case 1:
+			    Instantiate(healthUp, spawnPosition, Quaternion.identity);
+			    break;
+	    } 
     }
 }
